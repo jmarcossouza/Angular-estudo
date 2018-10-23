@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Navbar</a>
+  <a class="navbar-brand" [routerLink]="['/']">Navbar</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -8,9 +8,6 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
         <!--O router já fornece uma dinâmica (routerLinkActive) para colocar uma classe sobre o elemento ativo, devo então informar o nome da classe que ativará quando aquele componente estiver 'ativo'. Estou usando a classe: 'active'-->
-        <a class="nav-link" [routerLink]="['/']" routerLinkActive="active">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
         <!--Pra passar link tem que ser assim. Como estamos usando array no ROUTER, colocanos array tbm dentro do rounterLink-->
         <a class="nav-link" href="#">Contato</a>
       </li>

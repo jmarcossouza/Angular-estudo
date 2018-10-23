@@ -5,13 +5,15 @@ import { RouterModule } from '@angular/router'
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
-import { ROUTES } from './app.rotas'
+import { ROUTES } from './app.rotas';
+import { PagNaoEncontradaComponent } from './pag-nao-encontrada/pag-nao-encontrada.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
+    PagNaoEncontradaComponent
   ],
   imports: [
     BrowserModule,
