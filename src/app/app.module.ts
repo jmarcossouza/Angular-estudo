@@ -17,6 +17,7 @@ import { HttpClient } from '@angular/common/http'
 //Assim como importar esse Module
 import { HttpClientModule } from '@angular/common/http';
 import { PostMinComponent } from './posts/post-min/post-min.component';
+import { PostDetalhesComponent } from './post-detalhes/post-detalhes.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { PostMinComponent } from './posts/post-min/post-min.component';
     HomeComponent,
     PagNaoEncontradaComponent,
     PostsComponent,
-    PostMinComponent
+    PostMinComponent,
+    PostDetalhesComponent
   ],
   imports: [
     BrowserModule,

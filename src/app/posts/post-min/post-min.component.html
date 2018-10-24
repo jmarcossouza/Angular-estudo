@@ -1,5 +1,6 @@
 <!--Quando o mouse entrar vai executar o método mouseInAnimacao. Quando sair vai executar o outro método-->
-<a href="#" (mouseenter)="mouseInAnimacao()" (mouseleave)="mouseOutAnimacao()">
+<!--Vai redirecionar para os posts e mandando o id como parâmetro-->
+<a [routerLink]="['/posts', post.id]"  (mouseenter)="mouseInAnimacao()" (mouseleave)="mouseOutAnimacao()">
   <!-- O [@expandir] é o que está indicando a animação. Vai receber o estado padrão da animação-->
   <div class="card" style="width: 15rem;" [@expandir]="cardEstado">
     <div class="card-body">

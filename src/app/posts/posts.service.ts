@@ -13,9 +13,15 @@ export class PostsService {
 
     constructor(private http: HttpClient) {}
 
+    //Método que retornará um array de objetos dos posts
     //retornará um Observable lista de Posts
     posts(): Observable<Post[]> {
         return this.http.get<Post[]>(`${BACKEND_REST}/posts`)
+    }
+
+    //Este vai buscar por ID. Mas retornará só um objeto post, porque estou pegando só um
+    postsPorId(id: string): Observable<Post> {
+        return this.http.get<Post>(`${BACKEND_REST}/posts/${id}`)
     }
 
 }
