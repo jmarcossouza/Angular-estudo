@@ -12,3 +12,4 @@ https://jsonplaceholder.typicode.com/
 ## Animações
 
 npm install --save @angular/animations
+npm install --save web-animations-js

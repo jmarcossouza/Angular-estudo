@@ -1,5 +1,7 @@
-<a href="#">
-  <div class="card" style="width: 15rem;" >
+<!--Quando o mouse entrar vai executar o método mouseInAnimacao. Quando sair vai executar o outro método-->
+<a href="#" (mouseenter)="mouseInAnimacao()" (mouseleave)="mouseOutAnimacao()">
+  <!-- O [@expandir] é o que está indicando a animação. Vai receber o estado padrão da animação-->
+  <div class="card" style="width: 15rem;" [@expandir]="cardEstado">
     <div class="card-body">
       <h5 class="card-title">{{post.title | slice : 0 : 20}}</h5> <!-- Estou limitando a quantidade de caracteres a 20 pra não ficar muito grande-->
       <p class="card-text">{{post.body | slice: 0: 50}}</p> <!-- Poderia ser só {{post.body}}, mas como acima, estou limitando os caracteres-->
