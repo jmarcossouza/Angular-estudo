@@ -17,3 +17,12 @@
 .mt50 {
     margin-top: 50px;
 }
+
+.titulo-pagina {
+    font-family: 'Segoe UI';
+    color: #474747;
+    font-weight: 300;
+    margin: 30px;
+    text-align: center
+
+}

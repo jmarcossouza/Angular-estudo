@@ -9,7 +9,7 @@
       <li class="nav-item">
         <!--O router já fornece uma dinâmica (routerLinkActive) para colocar uma classe sobre o elemento ativo, devo então informar o nome da classe que ativará quando aquele componente estiver 'ativo'. Estou usando a classe: 'active'-->
         <!--Pra passar link tem que ser assim. Como estamos usando array no ROUTER, colocanos array tbm dentro do rounterLink-->
-        <a class="nav-link" href="#">Contato</a>
+        <a class="nav-link" [routerLink]="['/posts']" routerLinkActive="active">Posts</a>
       </li>
     </ul>
   </div>
