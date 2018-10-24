@@ -1,6 +1,8 @@
-<div class="card" style="width: 18rem;" >
-  <div class="card-body">
-    <h5 class="card-title">{{post.title}}</h5>
-    <p class="card-text">{{post.body}}</p>
-  </div>
-</div> 
+<a href="#">
+  <div class="card" style="width: 15rem;" >
+    <div class="card-body">
+      <h5 class="card-title">{{post.title | slice : 0 : 20}}</h5> <!-- Estou limitando a quantidade de caracteres a 20 pra não ficar muito grande-->
+      <p class="card-text">{{post.body | slice: 0: 50}}</p> <!-- Poderia ser só {{post.body}}, mas como acima, estou limitando os caracteres-->
+    </div>
+  </div> 
+</a>
