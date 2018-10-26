@@ -18,6 +18,8 @@ import { HttpClient } from '@angular/common/http'
 import { HttpClientModule } from '@angular/common/http';
 import { PostMinComponent } from './posts/post-min/post-min.component';
 import { PostDetalhesComponent } from './post-detalhes/post-detalhes.component';
+import { AdicionarPostComponent } from './adicionar-post/adicionar-post.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 
 @NgModule({
   declarations: [
@@ -27,16 +29,19 @@ import { PostDetalhesComponent } from './post-detalhes/post-detalhes.component';
     PagNaoEncontradaComponent,
     PostsComponent,
     PostMinComponent,
-    PostDetalhesComponent
+    PostDetalhesComponent,
+    AdicionarPostComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule, 
+    ReactiveFormsModule,
     HttpClientModule, //Colocar o HttpClientModule aqui também
     BrowserAnimationsModule, //Importar as animações
     RouterModule.forRoot(ROUTES) //como estamos no componente principal, usa-se o forRoot, mas se fosse outro componente, usaria-se o forChild
   ],
   //Todo serviço tem que estar em algum provider, se for fazer um módulo separado para carregar as coisas, deve-se colocar os serviços la
-  providers: [PostsService, HttpClient],
+  providers: [PostsService, HttpClient, FormsModule, ReactiveFormsModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

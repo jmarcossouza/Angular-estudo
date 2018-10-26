@@ -1,0 +1,31 @@
+<div class="mt50">
+  <h2 class="titulo-pagina">Adicionar post</h2>
+
+  <form [formGroup]="addPostForm">
+    
+    <!--Div que mostra as propriedades do form-->
+    <div class="border rounded form-atributos" [ngClass]="{'border-success': addPostForm.valid, 'border-danger': !addPostForm.valid}"> <!-- Vou explicar o ngClass abaixo-->
+      <!-- O Ngclass funciona assim: você colocar primeiro a classe que quer dentro do '' e depois do : a condição para ativar aquela classe.
+      No caso está ativando text-success se o formulário for válido e text-danger se não for válido-->
+      <p [ngClass]="{'text-success': addPostForm.valid, 'text-danger': !addPostForm.valid}">
+          <!-- Para ir chegando as propriedades do form: {{addPostForm.valid}} {{addPostForm.value | json}}-->
+          Formulário válido: {{addPostForm.valid}}<br>
+          Atributos: {{addPostForm.value | json}}</p>
+    </div>
+    <div class="form-group">
+      <label for="title">Título</label>
+      <input class="form-control" formControlName="title" autocomplete="off">
+    </div>
+    <div class="form-group">
+      <label for="body">Texto</label>
+      <textarea class="form-control" formControlName="body" autocomplete="off" rows="4"></textarea>
+    </div>
+
+    <!--Neste [disabled] vamos colocar as condições que queremos que sejam cumpridas para o disabled ser ativado.
+    No caso, eu coloquei se o form não for válido. Se a propriedade addPostForm.valid retornar false, vai habilitar o disabled-->
+    <!-- (click) ao clicar vai enviar os valores do form para o método enviarPost() no component.ts-->
+    <button class="btn btn-outline-success" [disabled]="!addPostForm.valid" (click)="enviarPost(addPostForm.value)">Enviar</button>
+  </form>
+
+  <p class="mt20 text-success" *ngIf="postId != undefined">Post enviado com sucesso. ID: {{postId}}</p> <!--Só será exibido quando a variavel postId for diferente de undefined-->
+</div>
