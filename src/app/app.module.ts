@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router'
+import { RouterModule, PreloadAllModules } from '@angular/router'
 //Para as animações
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -19,7 +19,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { PostMinComponent } from './posts/post-min/post-min.component';
 import { PostDetalhesComponent } from './post-detalhes/post-detalhes.component';
 import { AdicionarPostComponent } from './adicionar-post/adicionar-post.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms'
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
+//Tirei o componente sobre daqui para que o módulo raiz já não conheça ele e nem tente carregá-lo ao iniciar
 
 @NgModule({
   declarations: [
@@ -30,7 +32,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms'
     PostsComponent,
     PostMinComponent,
     PostDetalhesComponent,
-    AdicionarPostComponent
+    AdicionarPostComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +40,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms'
     ReactiveFormsModule,
     HttpClientModule, //Colocar o HttpClientModule aqui também
     BrowserAnimationsModule, //Importar as animações
-    RouterModule.forRoot(ROUTES) //como estamos no componente principal, usa-se o forRoot, mas se fosse outro componente, usaria-se o forChild
+    RouterModule.forRoot(ROUTES, {preloadingStrategy: PreloadAllModules}) //como estamos no componente principal, usa-se o forRoot, mas se fosse outro componente, usaria-se o forChild
+    //Com os argumentos dentro do {} estamos dizendo para o angular recarregar todos os módulos em segundo plano. Para quando chegarmos em um componente
+    //...que usa um módulo em lazy loading, ele não demorar pra carregar, já que não foi carregado junto com a aplicação.
   ],
   //Todo serviço tem que estar em algum provider, se for fazer um módulo separado para carregar as coisas, deve-se colocar os serviços la
   providers: [PostsService, HttpClient, FormsModule, ReactiveFormsModule],
