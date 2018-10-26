@@ -1,7 +1,7 @@
 <br><br>
 <a class="Voltar" [routerLink]="['/posts']"> Voltar</a>
 
-<div class="mt20 border border rounded corpo">
+<div class="mt20 border border rounded corpo" *ngIf="post.title && post.body"> <!--Com o ngif só vai mostrar se e quando o title existir-->
   <p class="texto-titulo">{{post.title}}</p>
 
   <p class="texto-corpo">{{post.body}}</p>
