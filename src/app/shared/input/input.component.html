@@ -1,0 +1,13 @@
+<label>{{label}}</label>
+
+<ng-content></ng-content>
+
+<!--Se o valido() retornar true, vai mostrar esse feedback de válido-->
+<div *ngIf="valido()" class="valid-feedback">
+  Ok!
+</div>
+
+<!-- Se o método invalido() retornar true, vai mostrar este feedback de inválido, mostrando a mensagem que foi passada para este componente-->
+<div *ngIf="invalido()" class="invalid-feedback">
+  {{mensagemInvalido}}
+</div>

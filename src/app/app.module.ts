@@ -32,7 +32,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     PostsComponent,
     PostMinComponent,
     PostDetalhesComponent,
-    AdicionarPostComponent,
+    AdicionarPostComponent
   ],
   imports: [
     BrowserModule,

@@ -1,11 +1,21 @@
-<form class="mt50">
+<form class="mt50" [formGroup]="loginForm">
   <div class="form-group">
-    <label for="exampleInputEmail1">Usuario</label>
-    <input type="email" class="form-control">
+    <app-input label="Usuario" mensagemInvalido="Campo obrigatório. (entre 4 e 15 caractéres)">
+      <input class="form-control" type="text" formControlName="usuario"
+      [ngClass]="{'is-valid': inputValido(loginForm.controls.usuario), 'is-invalid': inputInvalido(loginForm.controls.usuario)}">
+      <!--Aqui em cima foi um negócio meio louco:
+        Dentro do componente <app-input> vai mostrar os feedbacks dos inputs. Porém, as div's com os feedbacks (textinhos que vão aparecer em baixo do input) só aparecem
+          se o input tiver uma classe is-valid ou is-invalid. Então, criei este ngClass que vai usar um método para verificar se o input é válido e se já foi tocado ou é dirty..
+          ele envia como parâmetro o próprio input. O método lá, então recebe o input e faz as verificações e retorna true ou false.
+          A mesma coisa foi feita no input abaixo
+      -->
+    </app-input>
   </div>
   <div class="form-group">
-    <label for="exampleInputPassword1">Senha</label>
-    <input type="password" class="form-control">
+    <app-input label="Senha" mensagemInvalido="Campo obrigatório. (entre 4 e 16 caractéres)">
+      <input class="form-control" type="password" formControlName="senha"
+      [ngClass]="{'is-valid': inputValido(loginForm.controls.senha), 'is-invalid': inputInvalido(loginForm.controls.senha)}">
+    </app-input>
   </div>
-  <button type="submit" class="btn btn-primary">Login</button>
+  <button [disabled]="!loginForm.valid" type="submit" class="btn btn-primary">Login</button>
 </form>
