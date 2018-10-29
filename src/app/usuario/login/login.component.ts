@@ -3,8 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  templateUrl: './login.component.html'
 })
 export class LoginComponent implements OnInit {
 
@@ -17,8 +16,8 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.formBuilder.group(
       {
         //Aqui vão as propriedades que os inputs terão, suas validações, etc. Neste carro, o input se identificará como title
-        usuario: this.formBuilder.control(/* Isto indica que vai começar com um value vazio */'', [Validators.required, Validators.minLength(4), Validators.maxLength(15)]),
-        senha: this.formBuilder.control(/* Isto indica que vai começar com um value vazio */'', [Validators.required, Validators.minLength(4), Validators.maxLength(16)])
+        email: this.formBuilder.control(/* Isto indica que vai começar com um value vazio */'', [Validators.required, Validators.email, Validators.maxLength(60)]),
+        senha: this.formBuilder.control(/* Isto indica que vai começar com um value vazio */'', [Validators.required, Validators.minLength(4), Validators.maxLength(32)])
       }
     )
   }

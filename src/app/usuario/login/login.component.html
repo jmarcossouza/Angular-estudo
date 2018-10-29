@@ -1,8 +1,9 @@
 <form class="mt50" [formGroup]="loginForm">
   <div class="form-group">
-    <app-input label="Usuario" mensagemInvalido="Campo obrigatório. (entre 4 e 15 caractéres)">
-      <input class="form-control" type="text" formControlName="usuario"
-      [ngClass]="{'is-valid': inputValido(loginForm.controls.usuario), 'is-invalid': inputInvalido(loginForm.controls.usuario)}">
+    <app-input label="Email" mensagemInvalido="Deve conter um email válido">
+      <!--Vou deixar o type como text, porque não quero que o navegador faça a validação de email, e sim meu Angular doente-->
+      <input class="form-control" type="text" formControlName="email"
+      [ngClass]="{'is-valid': inputValido(loginForm.controls.email), 'is-invalid': inputInvalido(loginForm.controls.email)}">
       <!--Aqui em cima foi um negócio meio louco:
         Dentro do componente <app-input> vai mostrar os feedbacks dos inputs. Porém, as div's com os feedbacks (textinhos que vão aparecer em baixo do input) só aparecem
           se o input tiver uma classe is-valid ou is-invalid. Então, criei este ngClass que vai usar um método para verificar se o input é válido e se já foi tocado ou é dirty..
