@@ -1,0 +1,8 @@
+<!--No loginSerivce tem o método logado que vai retornar true se estiver logado ou false se não estiver logado-->
+<div *ngIf="loginService.logado()" class="mt50 border border-success" style="padding: 20px">
+  <p class="text-success">Você está logado com o Token: {{loginService.usuario.token}}</p>
+</div>
+
+<div *ngIf="!loginService.logado()" class="mt50 border border-danger" style="padding: 20px">
+    <p class="text-danger">Você <strong>NÃO</strong> está logado. Faça <a [routerLink]="['/login']">login</a> e depois volte aqui</p>
+</div>

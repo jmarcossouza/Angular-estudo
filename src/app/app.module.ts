@@ -21,6 +21,7 @@ import { PostDetalhesComponent } from './post-detalhes/post-detalhes.component';
 import { AdicionarPostComponent } from './adicionar-post/adicionar-post.component';
 //Módulo compartilhado. Veja-o
 import { SharedModule } from './shared/shared.module';
+import { TesteLogadoComponent } from './usuario/teste-logado/teste-logado.component';
 
 //Tirei o componente sobre daqui para que o módulo raiz já não conheça ele e nem tente carregá-lo ao iniciar
 
@@ -33,7 +34,8 @@ import { SharedModule } from './shared/shared.module';
     PostsComponent,
     PostMinComponent,
     PostDetalhesComponent,
-    AdicionarPostComponent
+    AdicionarPostComponent,
+    TesteLogadoComponent
   ],
   imports: [
     BrowserModule,

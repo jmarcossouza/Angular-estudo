@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from '../usuario/login/login.service';
 
 @Component({
   selector: 'app-header',
@@ -7,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  //Agora eu sei se está logado ou não. Veja teste-logado.component e login.service para entender melhor como funciona
+  constructor(private loginService: LoginService) { }
 
   ngOnInit() {
   }

@@ -16,11 +16,18 @@
       </li>
       <li class="nav-item">
           <a class="nav-link" [routerLink]="['/sobre']" routerLinkActive="active">Sobre</a>
-        </li>
+      </li>
+
+      <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/teste-logado']" routerLinkActive="active">Teste logado</a>
+      </li>
     </ul>
     <span class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/login']" routerLinkActive="active">Login</a>
+        <!--Se não estiver logado-->
+        <a class="nav-link" *ngIf="!loginService.logado()" [routerLink]="['/login']" routerLinkActive="active">Login</a>
+        <!--Se estiver logado-->
+        <a class="nav-link active" *ngIf="loginService.logado()">Usuario logado</a>
       </li>
     </span>
   </div>

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from './login.service';
-import { Usuario } from '../usuario.model'
 
 @Component({
   selector: 'app-login',
@@ -11,8 +10,10 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup
 
-  //Criei este objeto usuario só pra salvar a resposta do token e mostrar na tela
-  usuario: Usuario
+  //Como eu já estou guardando o token do usuário no login.service. Não preciso mais salvá-lo aqui
+
+  //Este objeto que mostrará a mensagem na tela quando ele logar ou der errado
+  mensagem: string
 
   constructor(private formBuilder: FormBuilder, private loginService: LoginService) { }
   
@@ -41,6 +42,11 @@ export class LoginComponent implements OnInit {
   login() {
 	  //Chamando o método de login do LoginService e informado os valores email e senha do form daqui
 	  this.loginService.login(this.loginForm.value.email, this.loginForm.value.senha)
-	  							.subscribe(usuario => this.usuario = usuario)
+	  							.subscribe(//Resposta de sucesso
+                              usuario => this.mensagem = `Login realizado. Token: ${usuario.token}`,
+                              //Resposta de erro
+                              object => this.mensagem = `Erro ao realizar login: ${object.error}` //Pela API eu sei que ele vai mandar um object com o parâmetro error, então já ocloquei pra exibílo
+                              //O problema é que ele nunca vai exibir a mensagem de erro (a menos que eu nao mande a senha), porque a API do backend está configurada para receber qualquer valor como login e senha e dar sucesso
+                              )
   }
 }
