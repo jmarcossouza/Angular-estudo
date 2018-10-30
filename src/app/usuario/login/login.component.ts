@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LoginService } from './login.service';
+import { Usuario } from '../usuario.model'
 
 @Component({
   selector: 'app-login',
@@ -9,7 +11,10 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup
 
-  constructor(private formBuilder: FormBuilder) { }
+  //Criei este objeto usuario só pra salvar a resposta do token e mostrar na tela
+  usuario: Usuario
+
+  constructor(private formBuilder: FormBuilder, private loginService: LoginService) { }
   
 
   ngOnInit() {
@@ -31,5 +36,11 @@ export class LoginComponent implements OnInit {
   //mesma coisa q acima, só que pro inválido
   inputInvalido(input: any) {
     return !input.valid && (input.dirty || input.touched)
+  }
+
+  login() {
+	  //Chamando o método de login do LoginService e informado os valores email e senha do form daqui
+	  this.loginService.login(this.loginForm.value.email, this.loginForm.value.senha)
+	  							.subscribe(usuario => this.usuario = usuario)
   }
 }

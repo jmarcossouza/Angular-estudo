@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common'
 import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 
 import {InputComponent} from './input/input.component'
+import { LoginService } from '../usuario/login/login.service';
 
 //Este módulo é um 'módulo compartilhado', mas ele não tem carregamento tárdio, ele meio que reune componentes que vários módulos usarão e os declara aqui
 //Porém, para os outros módulos usarem os componentes (services, components) daqui, eles devem importar este SharedModule
@@ -18,7 +19,7 @@ export class SharedModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: SharedModule,
-      providers:[]
+      providers:[LoginService]
     }
   }
 }

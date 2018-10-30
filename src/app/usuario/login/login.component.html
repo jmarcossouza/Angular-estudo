@@ -1,4 +1,12 @@
 <form class="mt50" [formGroup]="loginForm">
+
+  <div class="border border-success mb20 rounded" style="padding: 20px">
+    <div>Exemplo para teste:
+        <div>Email: <span class="text-success">peter@klaven</span></div>
+        <div>Senha: <span class="text-success">cityslicka</span></div>
+    </div>
+  </div>
+
   <div class="form-group">
     <app-input label="Email" mensagemInvalido="Deve conter um email válido">
       <!--Vou deixar o type como text, porque não quero que o navegador faça a validação de email, e sim meu Angular doente-->
@@ -18,5 +26,9 @@
       [ngClass]="{'is-valid': inputValido(loginForm.controls.senha), 'is-invalid': inputInvalido(loginForm.controls.senha)}">
     </app-input>
   </div>
-  <button [disabled]="!loginForm.valid" type="submit" class="btn btn-primary">Login</button>
+  <button (click)="login()" [disabled]="!loginForm.valid" type="submit" class="btn btn-primary">Login</button>
+
+  <div class="mt20" *ngIf="usuario">
+    <div>Login realizado! Token: <span class="text-success">{{usuario.token}}</span></div>
+  </div>
 </form>
