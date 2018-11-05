@@ -14,4 +14,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
+  deslogar() { //método para chamar o método deslogar do loginService
+      this.loginService.deslogar()
+  }
 }

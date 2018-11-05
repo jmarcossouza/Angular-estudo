@@ -27,7 +27,9 @@
         <!--Se não estiver logado-->
         <a class="nav-link" *ngIf="!loginService.logado()" [routerLink]="['/login']" routerLinkActive="active">Login</a>
         <!--Se estiver logado-->
-        <a class="nav-link active" *ngIf="loginService.logado()">Usuario logado</a>
+        <a class="nav-link" *ngIf="loginService.logado()" [routerLink]="['']" (click)="deslogar()">Deslogar</a>
+                                                            <!--Obs: eu não precisaria colocar este routerLink vazio (que vai acabar redirecionando para a home), mas coloquei pro deslogar ficar parecendo um link de verdade.
+                                                                ...com aquele negócio de se passar o mouse por cima, mudar o símbolo do mouse-->
       </li>
     </span>
   </div>

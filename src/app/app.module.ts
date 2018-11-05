@@ -22,6 +22,8 @@ import { AdicionarPostComponent } from './adicionar-post/adicionar-post.componen
 //Módulo compartilhado. Veja-o
 import { SharedModule } from './shared/shared.module';
 import { TesteLogadoComponent } from './usuario/teste-logado/teste-logado.component';
+//Pra usar o serviço dos Cookies, temos que importá-lo e declará-lo na lista de providers de algum módulo
+import { CookieService } from 'ngx-cookie-service';
 
 //Tirei o componente sobre daqui para que o módulo raiz já não conheça ele e nem tente carregá-lo ao iniciar
 
@@ -48,7 +50,7 @@ import { TesteLogadoComponent } from './usuario/teste-logado/teste-logado.compon
     //...que usa um módulo em lazy loading, ele não demorar pra carregar, já que não foi carregado junto com a aplicação.
   ],
   //Todo serviço tem que estar em algum provider, se for fazer um módulo separado para carregar as coisas, deve-se colocar os serviços la
-  providers: [PostsService, HttpClient],
+  providers: [PostsService, HttpClient, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
