@@ -1,7 +1,8 @@
 <br><br>
 <a class="Voltar" [routerLink]="['/posts']"> Voltar</a>
 
-<div class="mt20 border border rounded corpo" *ngIf="post.title && post.body"> <!--Com o ngif só vai mostrar se e quando o title existir-->
+<div class="mt20 border border rounded corpo" *ngIf="post?.title && post?.body"> <!--Com o ngif só vai mostrar se e quando o title existir.
+                                                Também coloquei este '?' que vai primeiro indicar se a propriedade existe antes de tentar acessar seu valor. Isso vai prevenir um erro no console.-->
   <p class="texto-titulo">{{post.title}}</p>
 
   <p class="texto-corpo">{{post.body}}</p>
