@@ -5,6 +5,7 @@ import { PostsComponent } from './posts/posts.component';
 import { PostDetalhesComponent } from './post-detalhes/post-detalhes.component';
 import { AdicionarPostComponent } from './adicionar-post/adicionar-post.component';
 import { TesteLogadoComponent } from './usuario/teste-logado/teste-logado.component';
+import { FormularioComponent } from './formulario/formulario.component';
 
 export const ROUTES: Routes = [ //Constante responsável pelas rotas do projeto
     {path: '', component: HomeComponent}, //Quando o caminho for vazio vai redirecionar para o componente home
@@ -16,5 +17,6 @@ export const ROUTES: Routes = [ //Constante responsável pelas rotas do projeto
     ...vai ser o 'padrão' de carregamento, no caso ele mesmo. (veja sobre.module)*/
     {path: 'login', loadChildren: './usuario/login/login.module#LoginModule'},
     {path: 'teste-logado', component: TesteLogadoComponent},
+    {path: 'formulario', component: FormularioComponent},
     {path: '**', component: PagNaoEncontradaComponent} //Os ** são para quando o usuário tentar entrar em uma página não existente
 ]

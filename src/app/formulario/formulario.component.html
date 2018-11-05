@@ -1,0 +1,70 @@
+<div class="mt50">
+    <h2 class="titulo-pagina">Exemplo de formulário</h2>
+
+    <form [formGroup]="formulario">
+
+        <div class="form-row">
+            <div class="col-md-8 mb-3">
+                <label for="nome">Nome</label>
+                <input class="form-control" formControlName="nome" autocomplete="off" [ngClass]="validacaoClass(formulario.controls.nome)">
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="nome">CPF <small>(Somente números)</small></label>
+                <input class="form-control" formControlName="cpf" autocomplete="off" [ngClass]="validacaoClass(formulario.controls.cpf)">
+            </div>
+        </div>
+
+
+        <!-- input radio -->
+        <!-- Basicamente não preciso fazer nada especial, só colocar os value de cada input e indicar o formControlName normalmente-->
+        <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="radio1" formControlName="sexo" value="Masculino" class="custom-control-input"
+                [ngClass]="validacaoClass(formulario.controls.sexo)">
+            <label class="custom-control-label" for="radio1">Masculino</label>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="radio2" formControlName="sexo" value="Feminino" class="custom-control-input"
+                [ngClass]="validacaoClass(formulario.controls.sexo)">
+            <label class="custom-control-label" for="radio2">Feminino</label>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="radio3" formControlName="sexo" value="Aberração" class="custom-control-input"
+                [ngClass]="validacaoClass(formulario.controls.sexo)">
+            <label class="custom-control-label" for="radio3">Aberração</label>
+        </div><br><br>
+
+        <!-- checkbox -->
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" formControlName="viagem" id="check">
+            <label class="custom-control-label" for="check">Disponibilidade para viagens</label>
+        </div><br>
+
+        <!-- FormGroup dentro de um FormGroup-->
+        <div class="form-row" formGroupName="endereco">
+            <!-- usa-se este formGroupName para indicar que os elementos dentro desta div percentem ao formGroup 'endereco'...
+        ...que fica dentro do formulario 'formulario' -->
+            <div class="col-md-6 mb-3">
+                <label>Rua</label>
+                <input type="text" class="form-control" formControlName="rua" [ngClass]="validacaoClass(formulario.controls.endereco.controls.rua)">
+                <!--Daí então é só ir colocando os formControlName normalmente-->
+            </div>
+            <div class="col-md-2 mb-3">
+                <label>Número</label>
+                <!-- Com o pattern, ele só vai validar se aqui for números. Se digitar qualquer coisa que não sejam números, dará inválido-->
+                <input type="text" class="form-control" formControlName="numero" [ngClass]="validacaoClass(formulario.controls.endereco.controls.numero)">
+            </div>
+            <div class="col-md mb-3">
+                <label>Bairro</label>
+                <input type="text" class="form-control" formControlName="bairro" [ngClass]="validacaoClass(formulario.controls.endereco.controls.bairro)">
+            </div>
+        </div>
+
+        <button class="btn btn-success" (click)="visualizarForm()">Ver console</button>
+    </form>
+
+    <div class="border rounded form-data" [ngClass]="{'border-success': formulario.valid, 'border-danger': !formulario.valid}">
+        <div [ngClass]="{'text-success': formulario.valid, 'text-danger': !formulario.valid}">Válido:
+            {{formulario.valid}}</div>
+        <pre>{{formulario.value | json}}</pre>
+    </div>
+</div>

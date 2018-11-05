@@ -24,6 +24,8 @@ import { SharedModule } from './shared/shared.module';
 import { TesteLogadoComponent } from './usuario/teste-logado/teste-logado.component';
 //Pra usar o serviço dos Cookies, temos que importá-lo e declará-lo na lista de providers de algum módulo
 import { CookieService } from 'ngx-cookie-service';
+//Componente só pra definir alguns exemplos para forms
+import { FormularioComponent } from './formulario/formulario.component';
 
 //Tirei o componente sobre daqui para que o módulo raiz já não conheça ele e nem tente carregá-lo ao iniciar
 
@@ -37,7 +39,8 @@ import { CookieService } from 'ngx-cookie-service';
     PostMinComponent,
     PostDetalhesComponent,
     AdicionarPostComponent,
-    TesteLogadoComponent
+    TesteLogadoComponent,
+    FormularioComponent
   ],
   imports: [
     BrowserModule,
