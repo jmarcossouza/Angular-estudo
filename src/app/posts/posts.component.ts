@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Post } from './post-min/post.model'; //Modelo pra exibir os dados
 import { PostsService } from './posts.service'; //Serviço que vai puxar os dados por Get via api backend
 import { FormControl, FormGroup } from '@angular/forms';
-import { switchMap, tap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { Observable } from 'rxjs'
+import { switchMap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-posts',
@@ -36,7 +35,10 @@ export class PostsComponent implements OnInit {
     //Apesar de eu ter definido o método de busca acima, tenho que deixar esta chamada aqui. Para que, quando entre na página, já trazer todos os posts
     //Mas veja no posts.service, porque la tem uma pegada com o parâmetro do termo de busca.
     this.postsService.posts()
-      .subscribe(posts => this.posts = posts)
+      .subscribe(posts => this.posts = posts) //Finalmente entendi como funciona o subscribe.
+      //Ele serve para pegar os dados do posts.service. Basicamente, se eu chamasse o método postsService.posts() sem um subscribe (o que eu acho que daria erro, porque ele tem um retorno)...
+      //...eu não estaria indicando onde vou receber estes dados, é aí que o subscribe entra: ele está informando que irá receber estes dados na variável auxiliar posts. Depois (depois do =>) vai...
+      //...passar estes dados para a variável posts deste componente.
   }
 
 }

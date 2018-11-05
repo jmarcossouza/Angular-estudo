@@ -1,7 +1,7 @@
 import { Post } from './post-min/post.model';
 import {Observable} from 'rxjs'
 //Vou usar a variável BACKEND_REST que contém o endenreço para consultar os dados
-import {BACKEND_REST} from '../app.backend'
+import { BACKEND_REST } from '../app.backend'
 import { Injectable } from '@angular/core';
 //Não se esqueça de fazer os imports no módulo principal, ou em um módulo secundário
 import { HttpClient} from '@angular/common/http' //Importando o Headers para definir os Headers, obviamente
@@ -15,8 +15,8 @@ export class PostsService {
     constructor(private http: HttpClient) {}
 
     //Método que retornará um array de objetos dos posts
-    //retornará um Observable lista de Posts
-    //a busca é uma variável que recebe como padrão uma string vazia. Isto resolveu o problema de eu entrar na página e ele só buscar quando...
+    //Retornará um Observable lista de Posts. O http vai receber um json do backend. Depois temque 'mapear' este json e descobrir o que é parâmetro e o que é valor, então ele me retorna algo chamado Observable com tudo mapeadinho.
+    //A busca é uma variável que recebe como padrão uma string vazia. Isto resolveu o problema de eu entrar na página e ele só buscar quando...
     //...eu digitava algo. Agora não, ele já entra na página com essa string de busca vazia, então vai trazer todos os posts logo de inicio
     posts(busca: string = ''): Observable<Post[]> {
         return this.http.get<Post[]>(`${BACKEND_REST}/posts`, {params: {q: busca}} /* Quando indicamos o q, estamos informando ao json-server que quero fazer uma busca em todos os dados */)
