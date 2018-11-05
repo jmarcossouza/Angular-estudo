@@ -16,8 +16,10 @@ export class PostsService {
 
     //Método que retornará um array de objetos dos posts
     //retornará um Observable lista de Posts
-    posts(): Observable<Post[]> {
-        return this.http.get<Post[]>(`${BACKEND_REST}/posts`)
+    //a busca é uma variável que recebe como padrão uma string vazia. Isto resolveu o problema de eu entrar na página e ele só buscar quando...
+    //...eu digitava algo. Agora não, ele já entra na página com essa string de busca vazia, então vai trazer todos os posts logo de inicio
+    posts(busca: string = ''): Observable<Post[]> {
+        return this.http.get<Post[]>(`${BACKEND_REST}/posts`, {params: {q: busca}} /* Quando indicamos o q, estamos informando ao json-server que quero fazer uma busca em todos os dados */)
     }
 
     //Este vai buscar por ID. Mas retornará só um objeto post, porque estou pegando só um

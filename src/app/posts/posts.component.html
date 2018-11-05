@@ -1,13 +1,19 @@
 <h2 class="titulo-pagina">Lista de posts</h2>
-<div class="row">
-  
-  <!-- ngFor é o foreach do Angular, para cada post, vai salvar na variável post e repitir a div e tudo q tem dentro dela.
-  Então vai repitir a div e tbm vai repitir o post-min dentro dela enviando cada post pro post-min-->
-  <div class="col" *ngFor="let post of posts">
-      <!--Aqui estou chamando o componente de post-min e estou enviando pra ele a variável daquele post, lá ele só vai receber e exibir-->
-      <app-post-min [post]=post></app-post-min>
-      
-  </div>
+
+<div class="input-group mb-3 mb20" [formGroup]="pesquisa">
+	<div class="input-group-prepend">
+		<span class="input-group-text" id="basic-addon1">Buscar posts</span>
+	</div>
+	<input type="text" formControlName="palavraschave" class="form-control" placeholder="Palavras-chave">
 </div>
 
+<div class="row">
 
+	<!-- ngFor é o foreach do Angular, para cada post, vai salvar na variável post e repitir a div e tudo q tem dentro dela.
+  Então vai repitir a div e tbm vai repitir o post-min dentro dela enviando cada post pro post-min-->
+	<div class="col" *ngFor="let post of posts">
+		<!--Aqui estou chamando o componente de post-min e estou enviando pra ele a variável daquele post, lá ele só vai receber e exibir-->
+		<app-post-min [post]=post></app-post-min>
+
+	</div>
+</div>
