@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { RouterModule, PreloadAllModules } from '@angular/router'
 //Para as animações
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -26,6 +26,10 @@ import { TesteLogadoComponent } from './usuario/teste-logado/teste-logado.compon
 import { CookieService } from 'ngx-cookie-service';
 //Componente só pra definir alguns exemplos para forms
 import { FormularioComponent } from './formulario/formulario.component';
+import { TratadorErro } from './app.erro-tratador';
+
+import { HTTP_INTERCEPTORS } from '@angular/common/http'
+import { AuthInterceptor } from './auth.interceptor';
 
 //Tirei o componente sobre daqui para que o módulo raiz já não conheça ele e nem tente carregá-lo ao iniciar
 
@@ -53,7 +57,16 @@ import { FormularioComponent } from './formulario/formulario.component';
     //...que usa um módulo em lazy loading, ele não demorar pra carregar, já que não foi carregado junto com a aplicação.
   ],
   //Todo serviço tem que estar em algum provider, se for fazer um módulo separado para carregar as coisas, deve-se colocar os serviços la
-  providers: [PostsService, HttpClient, CookieService],
+  providers: [PostsService, HttpClient, CookieService,
+                    //INTERCEPTOR
+                    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi:true}, /*Esta é a maneira que registramos um interceptor, todos são registrados dessa maneira e...
+                    ...associados ao mesmo token HTTP_INTERCEPTORS. Este token (HTTP_INTERCEPTORS) terá mais de um valor, será 'multivalorado', então quando o angular for obter o..
+                    ... valor deste token ele vai querer saber quais são os interceptors nós temos, então por isso o multi:true, exatamente para dizer: eu sei que este token tem...
+                    ... mais de um valor, e eu quero que o meu interceptor faça parte da lista de valores deste token, chamado HTTP_INTERCEPTORS. Posso também registrar mais de...
+                    ... um interceptor, se eu colocar dois interceptors, vai depender da ordem que eu coloquei, o que coloquei primeiro será chamado primeiro. */
+
+                    {provide: ErrorHandler, useClass: TratadorErro}], //Essa putaria aqui é pra usar o 'token' ErrorHandler. Ou seja, eu vou chamar nos outros serviços e componentes...
+                    //...como ErrorHandler, mas ele estará utilizando a classe TratadorErro.
   bootstrap: [AppComponent]
 })
 export class AppModule { }
