@@ -24,14 +24,15 @@ export class AuthInterceptor implements HttpInterceptor {//Em geral, registramos
         /*
         Agora, aqui eu poderia fazer alguma coisa com este LoginService. Suponhamos que eu tenha uma verificação que veja se o usuário está logado, se estiver logado, ele vai pegar...
         ...o token e colocar no header da chamada. Eu poderia fazer isso lá no loginService, mas se tivesse vários outros serviços que precisassem fazer isso, daria em código duplicado...
-        ...então, pelo bom costume, fazemos isso aqui. Eu não vou fazer de fato, vou criar um exemplo inexistente nesta aplicação só pra entender:
-
-        if (this.loginService.logado()) { //verificando se o usuário está logado, primeiramente (Se existe o token no cookie ou em algum serviço)
+        ...então, pelo bom costume, fazemos isso aqui. Aqui em baixo estou fazendo isso pra melhor compreensão:
+        */
+        if (loginService.logado()) { //verificando se o usuário está logado, primeiramente (Se existe o token no cookie ou em algum serviço)
             //Eu não consigo modificar esta instancia request do objeto HttpRequest. Então eu teria que clonar esta instancia para uma outra instancia e fazer o que devo. Mas sabendo que isso...
             //...seria muito comum, o pessoal do angular já criou um método clone no Request, então vou usá-lo.
             //Aqui estou criando outro Request e pegando a clonagem do request original
             const authRequest = request.clone( //Tem alguns parâmetros que podemos setar logo de cara na clonagem. Vou apresentar só um que é o setHeaders, mas daria pra modificar o body se quisesse tbm
                 {setHeaders: {'Authorization': `Bearer ${loginService.usuario.token}`}} //Aqui estou setando o token no header
+                //Este Bearer acima é normal, é meio que um padrão para JWT (Json Web Token: aqueles Tokens grandes pra caralho). Então, acredito que sempre que estiver usando os JWB deve-se colocar este Bearer antes do token
             )
 
             //Agora que fiz o que tinha que fazer, vou retornar o handle só que com um novo request modificado
@@ -40,8 +41,6 @@ export class AuthInterceptor implements HttpInterceptor {//Em geral, registramos
                         //..vai receber um erro http (401 eu acho), mas eu posso tratar esse erro no httphandler, e lá sim ver o que vou fazer se isso acontecer.
             return next.handle(request) //Método pra continuar a chamada, como abaixo
         }
-
-        */
 
         //Este comando que vai fazer interagir com o proximo da 'fila'
         return next.handle(request) //Este está dizendo para continuar e passar a chamada http pro resto da fila. este 'request' são os dados que queremos que continuem até chegar na chamada
