@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { NotificacaoService } from '../shared/notificacao/notificacao.service';
 
 //Componente criado somente para reunir alguns exemplos simples de formulários e como fazê-los. Ex: input radio, checkbox, etc.
 @Component({
@@ -11,7 +12,7 @@ export class FormularioComponent implements OnInit {
 
     formulario: FormGroup
 
-    constructor() { }
+    constructor(private notificacao: NotificacaoService) { }
 
     ngOnInit() {
         this.formulario = new FormGroup({ //Finalmente descobri a diferença entre usar este modo instanciando (com os 'new') e usar o formBuilder. Com este novo modo...
@@ -52,6 +53,7 @@ export class FormularioComponent implements OnInit {
     visualizarForm() {
         console.clear()
         console.log(this.formulario)
+        this.notificacao.notificar("Verifique o console.")
     }
 
 }

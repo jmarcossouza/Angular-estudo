@@ -4,5 +4,9 @@
   <div class="container">
     <!-- Indica qual área será trocada quando eu trocar de rota-->
     <router-outlet></router-outlet>
+
+    <!-- Você tem que puxar o componente de notificação aqui, para que ele fique presente em todas as telas, mas só será exibido quando
+    o serviço for chamado-->
+    <app-notificacao></app-notificacao>
   </div>
 </div>

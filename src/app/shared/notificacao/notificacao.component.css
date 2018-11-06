@@ -1,0 +1,8 @@
+.alerta {
+    min-width: 190px;
+    margin-left: -95px;
+    position: fixed;
+    left: 50%;
+    bottom: 25px;
+    text-align: center
+}
