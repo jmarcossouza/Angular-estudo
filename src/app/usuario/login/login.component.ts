@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from './login.service';
+import { NotificacaoService } from 'src/app/shared/notificacao/notificacao.service';
 
 @Component({
   selector: 'app-login',
@@ -13,9 +14,10 @@ export class LoginComponent implements OnInit {
   //Como eu já estou guardando o token do usuário no login.service. Não preciso mais salvá-lo aqui
 
   //Este objeto que mostrará a mensagem na tela quando ele logar ou der errado
-  mensagem: string
+  //mensagem: string
+  //Como eu implementei o notificacaoService, não vou usar mais esse método de merda.
 
-  constructor(private formBuilder: FormBuilder, private loginService: LoginService) { }
+  constructor(private formBuilder: FormBuilder, private loginService: LoginService, private notificacao: NotificacaoService) { }
   
 
   ngOnInit() {
@@ -43,9 +45,9 @@ export class LoginComponent implements OnInit {
 	  //Chamando o método de login do LoginService e informado os valores email e senha do form daqui
 	  this.loginService.login(this.loginForm.value.email, this.loginForm.value.senha)
 	  							.subscribe(//Resposta de sucesso
-                              usuario => this.mensagem = `Login realizado. Token: ${usuario.token}`,
+                              usuario => this.notificacao.notificar(`Login realizado. Token: ${usuario.token}.`), //Vai chamar a notificação informando o sucesso do login
                               //Resposta de erro
-                              object => this.mensagem = `Erro ao realizar login: ${object.error}` //Pela API eu sei que ele vai mandar um object com o parâmetro error, então já ocloquei pra exibílo
+                              object => this.notificacao.notificar(`Falha no login: ${object.error.message}.`) //Pela API eu sei que ele vai mandar um object com o parâmetro error, então já ocloquei pra exibílo
                               //O problema é que ele nunca vai exibir a mensagem de erro (a menos que eu nao mande a senha), porque a API do backend está configurada para receber qualquer valor como login e senha e dar sucesso
                               )
   }

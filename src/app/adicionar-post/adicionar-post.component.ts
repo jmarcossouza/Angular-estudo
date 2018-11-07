@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormBuilder, Validators, AbstractControl} from '@angular/forms'
 import { Post } from '../posts/post-min/post.model';
 import { PostsService } from '../posts/posts.service';
+import { NotificacaoService } from '../shared/notificacao/notificacao.service';
 
 @Component({
   selector: 'app-adicionar-post',
@@ -13,9 +14,8 @@ export class AdicionarPostComponent implements OnInit {
 
   //Variável que contém o formulário
   addPostForm: FormGroup
-  postId: number
 
-  constructor(private formBuilder: FormBuilder, private postsService: PostsService) { }
+  constructor(private formBuilder: FormBuilder, private postsService: PostsService, private notificacao: NotificacaoService) { }
 
   ngOnInit() {
     this.addPostForm = this.formBuilder.group(
@@ -31,8 +31,7 @@ export class AdicionarPostComponent implements OnInit {
     this.postsService.enviarPost(post) //Enviando a variável post do tipo Post com os dados do formulário
         .subscribe( (postId: number) => {//Aqui tem o subscribe que vai me retornar o que foi pedido lá no serviço. vou receber o id e imprimir no console.
           //método que vai fazer algo quando eu receber o meu subscribe
-          console.log(`Post adicionado. ID: ${postId}`)
-          this.postId = postId
+          this.notificacao.notificar(`Post adicionado. ID: ${postId}`)//Mostrar a notificação
         })
   }
 

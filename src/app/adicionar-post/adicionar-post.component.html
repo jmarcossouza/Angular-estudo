@@ -26,6 +26,4 @@
     <!-- (click) ao clicar vai enviar os valores do form para o método enviarPost() no component.ts-->
     <button class="btn btn-outline-success" [disabled]="!addPostForm.valid" (click)="enviarPost(addPostForm.value)">Enviar</button>
   </form>
-
-  <p class="mt20 text-success" *ngIf="postId != undefined">Post enviado com sucesso. ID: {{postId}}</p> <!--Só será exibido quando a variavel postId for diferente de undefined-->
 </div>

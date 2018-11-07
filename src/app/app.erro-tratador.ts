@@ -1,22 +1,23 @@
 import { HttpErrorResponse } from '@angular/common/http'
 import { ErrorHandler, Injectable, Injector, NgZone } from '@angular/core'; //Como vou usar injeção de dependencia, vou trazer o Injectable
 import { Router } from '@angular/router';
+import { NotificacaoService } from './shared/notificacao/notificacao.service';
 
 @Injectable()
 export class TratadorErro extends ErrorHandler { //Estou extendendo uma classe do angular chamada ErrorHandler
 
     /*Se tivesse algum serviço de notificação e quisesse implementar no errorHandler. Eu o puxaria pelo injetor (veja o authInterceptor, lá tem uma explicação melhor). Mas não poderia de esquecer...
     ...de, dentro do construtor, colocar o super(). Pra ativar o construtor da classe ErrorHandler.
-    Assim: */
+    OBS: Talvez ele permita não usar o Injector, como aqui no NotificacaoService deu certo. Mas se der merda, é só usar o Injector.*/
 
-    constructor(private injetor: Injector ) {
+    constructor(private injetor: Injector, private notificacao: NotificacaoService ) { //Engraçado que antes deu merda por eu puxar um serviço sem o injetor, agora ele deixou.
+        //Tente puxar os serviços normalmente, caso dê merda, use o Injector
         super() //Como dito acima, o super deve ser chamado por causa do construtor da classe ErrorHandler
     }
 
     handleError(errorResponse: Response | any) { //Estou sobreescrevendo o método handleError que já contém na classe ErrorHandler
         //Aí o método do serviço de notificação seria usado aqui dentro. Se fosse pra colocar pra aparecer uma notificação, colocaria-se aqui.
         
-        //Eu poderia puxar o serviço de notificação aqui (não literalmente aqui, dentro deste if abaixo, em alguns dos casos) pelo injetor (VEJA A PORRA DO AUTHINTERCEPTOR ./auth.interceptor.ts PARA ENTENDER)
         if (errorResponse instanceof HttpErrorResponse) { //Se a var errorResponse for mesmo uma instancia de HttpErrorResponse
             //Se o backend enviar uma mensagem junto com o erro, podemos salvá-la em uma constante assim:
             //const mensagem = errorResponse.error.message
@@ -32,17 +33,19 @@ export class TratadorErro extends ErrorHandler { //Estou extendendo uma classe d
 
                 switch (errorResponse.status) { //Aqui estou pegando o status (codigo) do erro e exibindo umas mensagens conforme
                     case 401://401 é onde você tenta acessar uma página que precisa de alguma autentificação, mas não mandamos nada.
+                        this.notificacao.notificar("Você precisa autenticar-se para continuar.")
                         //Então vou mandar pra página de login
                         this.injetor.get(Router).navigate(['/login'])//Aqui estou injetando o serviçoRouter pra mandar pra página de login
                         break;
                     case 403:
-                        alert('403: Não autorizado') //Ou coloque a constante mensagem se souber que o backend envia uma
-                        //Ou se tivesse o serviço de notificação
-                        //this.notificacao.notifique("Não autorizado")
+                        this.notificacao.notificar("Não autorizado.") //Ou coloque a constante mensagem se souber que o backend envia uma
+                        //Agora tenho serviço de notificacao, entou usá-lo-ei
                         break;
                     case 404:
-                        alert('404: Não encontrado')
+                        this.notificacao.notificar("404: Erro na requisição HTTP: Não encontrado.")
                         break;
+                    default:
+                        this.notificacao.notificar("Erro HTTP.")
                 }
             })
             

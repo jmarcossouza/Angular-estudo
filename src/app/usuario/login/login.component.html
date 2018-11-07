@@ -20,8 +20,4 @@
     </app-input>
   </div>
   <button (click)="login()" [disabled]="!loginForm.valid" type="submit" class="btn btn-primary">Login</button>
-
-  <div class="mt20" *ngIf="mensagem">
-    <div>{{mensagem}}</div>
-  </div>
 </form>
