@@ -30,6 +30,7 @@ import { TratadorErro } from './app.erro-tratador';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http'
 import { AuthInterceptor } from './auth.interceptor';
+import { MensagensComponent } from './websockets/mensagens/mensagens.component';
 
 //Tirei o componente sobre daqui para que o módulo raiz já não conheça ele e nem tente carregá-lo ao iniciar
 
@@ -44,7 +45,8 @@ import { AuthInterceptor } from './auth.interceptor';
     PostDetalhesComponent,
     AdicionarPostComponent,
     TesteLogadoComponent,
-    FormularioComponent
+    FormularioComponent,
+    MensagensComponent
   ],
   imports: [
     BrowserModule,

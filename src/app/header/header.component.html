@@ -1,40 +1,45 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" [routerLink]="['/']">Estudo do Angular</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+    <a class="navbar-brand" [routerLink]="['/']">Estudo do Angular</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <!--O router já fornece uma dinâmica (routerLinkActive) para colocar uma classe sobre o elemento ativo, devo então informar o nome da classe que ativará quando aquele componente estiver 'ativo'. Estou usando a classe: 'active'-->
-        <!--Pra passar link tem que ser assim. Como estamos usando array no ROUTER, colocanos array tbm dentro do rounterLink-->
-        <a class="nav-link" [routerLink]="['/posts']" routerLinkActive="active">Posts</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/add-post']" routerLinkActive="active">Novo post</a>
-      </li>
-      <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/sobre']" routerLinkActive="active">Sobre</a>
-      </li>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <!--O router já fornece uma dinâmica (routerLinkActive) para colocar uma classe sobre o elemento ativo, devo então informar o nome da classe que ativará quando aquele componente estiver 'ativo'. Estou usando a classe: 'active'-->
+                <!--Pra passar link tem que ser assim. Como estamos usando array no ROUTER, colocanos array tbm dentro do rounterLink-->
+                <a class="nav-link" [routerLink]="['/posts']" routerLinkActive="active">Posts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/add-post']" routerLinkActive="active">Novo post</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/sobre']" routerLinkActive="active">Sobre</a>
+            </li>
 
-      <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/teste-logado']" routerLinkActive="active">Teste logado</a>
-      </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/teste-logado']" routerLinkActive="active">Teste logado</a>
+            </li>
 
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/formulario']" routerLinkActive="active">Formulário</a>
-    </li>
-    </ul>
-    <span class="navbar-nav">
-      <li class="nav-item">
-        <!--Se não estiver logado-->
-        <a class="nav-link" *ngIf="!loginService.logado()" [routerLink]="['/login']" routerLinkActive="active">Login</a>
-        <!--Se estiver logado-->
-        <a class="nav-link" *ngIf="loginService.logado()" [routerLink]="['']" (click)="deslogar()">Deslogar</a>
-                                                            <!--Obs: eu não precisaria colocar este routerLink vazio (que vai acabar redirecionando para a home), mas coloquei pro deslogar ficar parecendo um link de verdade.
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/formulario']" routerLinkActive="active">Formulário</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/mensagens']" routerLinkActive="active">Mensagens</a>
+            </li>
+        </ul>
+        <span class="navbar-nav">
+            <li class="nav-item">
+                <!--Se não estiver logado-->
+                <a class="nav-link" *ngIf="!loginService.logado()" [routerLink]="['/login']" routerLinkActive="active">Login</a>
+                <!--Se estiver logado-->
+                <a class="nav-link" *ngIf="loginService.logado()" [routerLink]="['']" (click)="deslogar()">Deslogar</a>
+                <!--Obs: eu não precisaria colocar este routerLink vazio (que vai acabar redirecionando para a home), mas coloquei pro deslogar ficar parecendo um link de verdade.
                                                                 ...com aquele negócio de se passar o mouse por cima, mudar o símbolo do mouse-->
-      </li>
-    </span>
-  </div>
+            </li>
+        </span>
+    </div>
 </nav>

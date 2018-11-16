@@ -1,0 +1,9 @@
+<!--Apênas um ngFor básico pra mostrar as mensagens-->
+<div *ngFor="let mensagem of msgs" class="border border-success rounded bloco">
+    <p>
+        Nome: {{mensagem.nome}}
+    </p>
+    <p>
+        Mensagem: {{mensagem.mensagem}}
+    </p>
+</div>
